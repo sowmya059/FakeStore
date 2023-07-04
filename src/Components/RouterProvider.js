@@ -1,16 +1,14 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import AddCart from "./Components/AddCart";
-import Home from "./Components/Homepage";
+import { Routes, Route } from 'react-router-dom'
+import Cart from './Cart'
+import Home from './Home'
 
-function RouterProvider() {
+const RouterProvider = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<AddCart />} />
-      </Routes>
-    </>
-  );
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/cart' element={<Cart />} />
+    </Routes>
+  )
 }
-export default RouterProvider;
+
+export default RouterProvider
