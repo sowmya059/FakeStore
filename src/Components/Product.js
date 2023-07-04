@@ -13,7 +13,6 @@ const Product = ({ item }) => {
       </div>
       <div>
         <h5 className='product-name'>{title}</h5>
-        <h4>{description}</h4>
         <h4>price:{price}</h4>
         <div>
           <button className='product-add' onClick={handleAddToCart}>
