@@ -1,0 +1,17 @@
+.items {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: wrap;
+}
+
+.cart {
+  width: 23%;
+  box-sizing: 0 0 4px 3px black;
+  text-align: center;
+  padding: 1.5em;
+  margin-bottom: 2em;
+}
+
+.product-name {
+  font-size: 14px;
+}
