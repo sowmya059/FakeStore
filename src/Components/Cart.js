@@ -1,42 +1,67 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { CartProduct } from "../storecontext/Context";
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { CartProduct } from '../storecontext/Context'
 
 const Cart = () => {
-  const [items, setItems] = useState([]);
-
   const { cartProducts, handleDecrease, handleIncrease } =
-    useContext(CartProduct);
+    useContext(CartProduct)
 
   return (
-    <div>
-      <Link to="/">Back to home </Link>
+    <div className='cart'>
+      <Link to='/'>Back to home </Link>
 
-      {cartProducts.map((item, index) => (
-        <div className="cart-product" key={index}>
-          <img src={item.image} alt={item.title} width={60} />
-          <p>{item.title}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
 
-          <div>
-            <button onClick={() => handleDecrease(item)}>-</button>
-            <span>{item.quantity}</span>
-            <button onClick={() => handleIncrease(item)}>+</button>
-          </div>
-          <div>
-            <span>price:{item.price}</span>
-          </div>
-        </div>
-      ))}
-      <div>
-        Total price :
-        {parseInt(
-          cartProducts.reduce(
-            (total, item) => total + item.price * item.quantity,
-            0
-          )
-        )}
-      </div>
+        <tbody>
+          {cartProducts.map((item, index) => (
+            <tr key={index}>
+              <td>
+                <div className='meta'>
+                  <img src={item.image} alt={item.title} width={40} />
+                  <div className='info'>
+                    {item.title}
+                    <div className='buttons'>
+                      <button onClick={() => handleDecrease(item)}>-</button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => handleIncrease(item)}>+</button>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span>{item.price}</span>
+              </td>
+              <td>
+                <span>{item.price * item.quantity}</span>
+              </td>
+            </tr>
+          ))}
+          <tr style={{ background: '#efefef' }}>
+            <td>
+              <strong>Total</strong>
+            </td>
+            <td></td>
+            <td>
+              <strong>
+                {parseInt(
+                  cartProducts.reduce(
+                    (total, item) => total + item.price * item.quantity,
+                    0
+                  )
+                )}
+              </strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  );
-};
-export default Cart;
+  )
+}
+export default Cart

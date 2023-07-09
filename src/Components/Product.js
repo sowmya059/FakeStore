@@ -1,28 +1,25 @@
-import React, { useContext } from "react";
-import "./Product.css";
-import { CartProduct } from "../storecontext/Context";
+import React, { useContext } from 'react'
+import { CartProduct } from '../storecontext/Context'
 
 export const Product = ({ item }) => {
-  const { title, image, price, category } = item;
+  const { title, image, price, category } = item
 
-  const { cartProducts, setCartProducts } = useContext(CartProduct);
+  const { cartProducts, setCartProducts } = useContext(CartProduct)
 
-  const handleAddtoCart = (item) => {
-    const isProduct = cartProducts.findIndex(
-      (product) => product.id === item.id
-    );
+  const handleAddtoCart = item => {
+    const isProduct = cartProducts.findIndex(product => product.id === item.id)
 
     if (isProduct !== -1) {
       const updatedCartProducts = cartProducts.map((product, index) => {
         if (index === isProduct) {
-          return { ...product, quantity: product.quantity + 1 };
+          return { ...product, quantity: product.quantity + 1 }
         }
-        return { ...product };
-      });
+        return { ...product }
+      })
 
-      setCartProducts(updatedCartProducts);
+      setCartProducts(updatedCartProducts)
     } else {
-      setCartProducts((prev) => [
+      setCartProducts(prev => [
         ...prev,
         {
           ...prev,
@@ -34,27 +31,23 @@ export const Product = ({ item }) => {
           rating: item.rating,
           quantity: 1,
         },
-      ]);
-      console.log(cartProducts);
+      ])
+      console.log(cartProducts)
     }
-  };
+  }
 
   return (
-    <>
-      <div className="cart">
-        <img className="product-image" src={image} alt="card" />
-      </div>
-      <div>
-        <h5 className="product-name">{title}</h5>
-        <h4>price:{price}</h4>
-        <h4>category:{category}</h4>
+    <div className='product'>
+      <img className='product-image' src={image} alt='card' />
+      <h5 className='product-name'>{title}</h5>
+      <h4>price:{price}</h4>
+      <h4>category:{category}</h4>
 
-        <div>
-          <button className="product-add" onClick={() => handleAddtoCart(item)}>
-            ADD TO CART
-          </button>
-        </div>
+      <div>
+        <button className='product-add' onClick={() => handleAddtoCart(item)}>
+          ADD TO CART
+        </button>
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
