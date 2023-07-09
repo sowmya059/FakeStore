@@ -8,19 +8,19 @@ export const Product = ({ item }) => {
   const { cartProducts, setCartProducts } = useContext(CartProduct);
 
   const handleAddtoCart = (item) => {
-    const itemIndex = cartProducts.findIndex(
-      (cartItem) => cartItem.id === item.id
+    const isProduct = cartProducts.findIndex(
+      (product) => product.id === item.id
     );
 
-    if (itemIndex !== -1) {
-      const updatedCart = cartProducts.map((cartItem, index) => {
-        if (index === itemIndex) {
-          return { ...cartItem, quantity: cartItem.quantity + 1 };
+    if (isProduct !== -1) {
+      const updatedCartProducts = cartProducts.map((product, index) => {
+        if (index === isProduct) {
+          return { ...product, quantity: product.quantity + 1 };
         }
-        return { ...cartItem };
+        return { ...product };
       });
 
-      setCartProducts(updatedCart);
+      setCartProducts(updatedCartProducts);
     } else {
       setCartProducts((prev) => [
         ...prev,
