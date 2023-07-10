@@ -10,11 +10,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-<<<<<<< HEAD
 
-.product-image {
-=======
-html,
 body {
   overflow-x: hidden;
 }
@@ -30,7 +26,6 @@ body {
   margin: 16px;
 }
 .product img {
->>>>>>> 27a2b71827e3cd51d909c723c9a414fdeb304ed8
   width: 100%;
   height: 250px;
   object-fit: contain;
